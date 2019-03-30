@@ -1,0 +1,75 @@
+main {
+
+  .playlist .item {
+    &:hover {
+      background-color: lightblue;
+    }
+    padding: .5rem !important;
+  }
+
+  /*DESKTOP ONLY CODE*/
+
+  @media screen and (min-width: 700px) {
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
+
+  padding-top: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+
+  .col-left {
+    flex: 1 1 38%;
+    margin-right: 2%;
+  }
+
+  .col-right {
+    flex: 1 1 60%;
+
+    .centered-button {
+      display: block;
+      margin: 0 auto;
+    }
+
+  }
+
+  /*MOBILE ONLY CODE*/
+  @media screen and (max-width: 700px) {
+    .col-left, .col-right {
+      flex: 1 1 100%;
+    }
+  }
+
+  .library-songs-list {
+
+    box-sizing: border-box;
+
+    height: 70vh;
+    overflow-y: scroll;
+
+    margin: 0 auto;
+
+    .item {
+      display: flex;
+
+      position: relative;
+
+      .playlist-icon {
+        font-size: 2rem;
+        align-self: center;
+        box-sizing: border-box;
+        padding-right: 1rem;
+      }
+
+      .add-to-playlist-check {
+        position: absolute;
+        top: 0;
+        right: 1rem;
+      }
+
+    }
+  }
+
+}
+
+
