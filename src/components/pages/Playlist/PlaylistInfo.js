@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import API from '../../../classes/API';
+import {Link} from 'react-router-dom';
+import Spinner from '../../base/Spinner';
 
 class PlaylistInfo extends Component {
 
@@ -52,22 +54,30 @@ class PlaylistInfo extends Component {
     };
 
     onRenderSongs() {
-        return this.state.songs.map(song => {
-            return (
-                <div className="item" key={song.id}>
 
-                    <i className="fas fa-music playlist-icon"></i>
-                    <div className="content">
-                        <a className="header" href="# ">{song.artist}</a>
-                        <div className="description">{song.title} <a><b>{song.album}</b></a> Duration:
-                            {song.duration}
+        if(this.state.songs.length > 0){
+
+
+            return this.state.songs.map(song => {
+                return (
+                    <div className="item" key={song.id}>
+
+                        <i className="fas fa-music playlist-icon"></i>
+                        <div className="content">
+                            <a className="header" href="# ">{song.artist}</a>
+                            <div className="description">{song.title} <a href="# "><b>{song.album}</b></a> Duration:
+                                {song.duration}
+                            </div>
                         </div>
                     </div>
-                </div>
 
 
-            )
-        });
+                )
+            });
+        } else {
+            return <Spinner/>
+        }
+
 
     }
 
@@ -76,9 +86,7 @@ class PlaylistInfo extends Component {
             <React.Fragment>
                 <h1>{this.state.playlistInfo.name}</h1>
                 <div className="ui relaxed list playlist-internal">
-
                     {this.onRenderSongs()}
-
                 </div>
 
             </React.Fragment>
@@ -92,8 +100,12 @@ class PlaylistInfo extends Component {
         return (
             <main>
 
-                <div className="container">
+                <div className="playlist-internal-container">
                     {this.onRenderPlaylistInfo()}
+
+                    <Link to={'/'} className="ui secondary button">
+                        Back
+                    </Link>
                 </div>
 
             </main>
